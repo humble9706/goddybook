@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+
+    {% for removal in removals %}
+        {{removal}}
+    {% endfor %}
+
+    {% for action in actions %}
+        {% include 'actions_detail.html' %}
+    {% endfor %}
+
+    {% if messages %}
+    	{% for message in messages %}
+    		<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+			  {{message|safe}}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+    	{% endfor %}
+    {% endif %}
+    <h2>
+        Your Dasshboard <a href="{% url 'Accounts:password_change' %}" class="btn btn-info"> change password </a>
+    </h2>
+    <a href="{% url 'Accounts:edit_profile' %}" class="btn btn-info"> Edit Profile </a>
+{% endblock content %}

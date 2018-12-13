@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top p-1">
+    <a class="navbar-brand img-fluid" href="#"> {% if request.user.profile.photo %} {% load thumbnail %}
+                {% thumbnail request.user.profile.photo "45x45" crop='15%' as im %}
+                    <img src="{{ im.url }}" class="border rounded-circle">
+                {% endthumbnail %} {% else %} <i class="fa fa-user"></i> {% endif %} </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText" style="color: white;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" href="{% url 'posts:post_list' %}"> Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" href="{% url 'Accounts:dashboard' %}"> Dashboard <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" href="{% url 'Accounts:user_list' %}"> People <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" href="{% url 'posts:create_post' %}"> Post <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: white;" href="{% url 'posts:post_ranking' %}"> Most Read <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <span>
+        {% if request.user.is_authenticated %}
+        <span class="nav-item">
+            Welcome {{request.user.first_name|capfirst}} <a href="{% url 'Accounts:logout' %}" class="btn btn-info"> Logout </a>
+        </span>
+        {% else %}
+        <span class="nav-item">
+           <a href="{% url 'Accounts:login' %}" class="btn btn-info"> Login </a>
+        </span>
+        {% endif %}
+    </span>
+</div>
+</nav>
+{% endblock content %}

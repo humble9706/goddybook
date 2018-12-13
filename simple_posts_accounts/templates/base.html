@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <title> {% block title %}  {% endblock title %} </title>
+	<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'mine.css' %}">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+</head>
+<body>
+
+    <!-- Script files -->
+    <script src="{% static 'jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'bootstrap.bundle.min.js' %}" type="text/javascript"></script> 
+
+{% block content %}  {% endblock content %}
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js">
+</script>
+<script>
+var csrftoken = Cookies.get('csrftoken');
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    }
+  });
+  $(document).ready(function(){
+    {% block javascript %}
+    console.log('ready');
+    {% endblock %}
+  });
+</script>
+
+$(document).ready(function(){
+    {% block java %}
+    console.log('ready');
+    {% endblock %}
+  });
+
+</body>
+</html>

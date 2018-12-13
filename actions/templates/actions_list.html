@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    Actions list
+{% endblock title %}
+{% block content %}
+{% for action in actions %}
+	{{action.verb}}
+{% endfor %} 
+{% endblock %}

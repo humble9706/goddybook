@@ -1,0 +1,21 @@
+.card{
+		width: 100%;
+		min-width: 100px;
+		height: auto;
+		overflow-x: hidden;
+	}
+
+
+@media all and (min-width: 655px){
+	.card{
+		width: 320px;
+		height: auto;
+	}
+}
+
+@media all and (min-width: 1000px){
+	.card{
+		width: 322px;
+		height: auto;
+	}
+}

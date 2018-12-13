@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    comment list
+{% endblock title %}
+
+{% block content %}
+    {% for comment in post.comments.all %}
+       {{forloop.counter}}) {{comment.body}} By: {{comment.writer|capfirst}} <img src="{{comment.writer.profile.photo.url}}" width="20" height="20"><br>
+    {% endfor %}
+{% endblock content %}

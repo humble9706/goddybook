@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Create Post
+{% endblock title %}
+
+{% block content %}
+    <h3>
+        Create New Post
+    </h3>
+    <form action="." method="post" enctype="multipart/form-data">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3">
+                    {{form.title|as_crispy_field}}
+                </div>
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3">
+                    {{form.image|as_crispy_field}}
+                </div>
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3">
+                    {{form.body|as_crispy_field}}
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-sm btn-info text-center" type="submit">submit</button>
+        </div>
+        {% csrf_token %}
+    </form>
+{% endblock content %}

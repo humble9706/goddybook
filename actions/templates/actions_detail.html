@@ -1,0 +1,29 @@
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+{% with user=action.user profile=action.user.profile %}
+
+	{% if profile.photo %} <img src="{{ user.profile.photo.url }}" height="40px" width="40px" /> {% endif %}
+
+	{{action.created|timesince}} ago.
+
+	{{user.username|capfirst}}
+
+	{{action.verb}}
+
+	{% if action.target %}
+		{% with target=action.target %}
+			{{target|capfirst}}.
+		{% endwith %}
+	{% endif %}
+
+	{% if action.target %} 
+		{% with target=action.target %}
+		{% if target.image %} <img src="{{ target.image.url }}" height="40px" width="40px" /> {% endif %}
+		{% endwith %}
+	{% endif %}
+
+{% endwith %}
+<a href="{% url 'Accounts:dashboard' action.id user.id %}" class="close">  
+    <span aria-hidden="true">&times;</span>
+  </a>
+
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    All Users
+{% endblock title %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        {% for user in users %}
+        <div class="col-12 col-sm-auto col-md-auto col-lg-auto col-xl-auto my-1">
+            <div class="card pb-1 border border-dark" style="max-width:360px;">
+                <div class="text-center p-1 bg-black" style="font-size: 1.75rem; color: white;">
+                    <a href="{{ user.get_absolute_url }}" class="title">
+                        {{ user.get_full_name|capfirst|truncatechars:'16' }}
+                    </a>
+                </div>
+                {% if user.profile.photo %}
+                    <img src="{{user.profile.photo.url}}" alt="{{user.username|capfirst}}'s image" class="img-fluid rounded-circle">
+                {% else %}
+                    <img src="{% static 'best-government.jpg' %}" alt="{{user.username|capfirst}}'s image" class="img-fluid rounded-circle">
+                {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

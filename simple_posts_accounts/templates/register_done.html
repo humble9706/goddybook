@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+Dasshboard
+{% endblock title %}
+
+{% block content %}
+    <p>
+        Welcome {{new_user.first_name}} <a href="{% url 'Accounts:login' %}" class="btn btn-info btn-sm"> login </a>
+    </p>
+{% endblock content %}

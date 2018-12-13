@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Create Comment
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <h4 class="text-center">
+        Create New Comment
+    </h4>
+    <form action="." method="post">
+        <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+            {{form.body|as_crispy_field}}
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success btn-sm"> submit </button>
+    </div>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock content %}

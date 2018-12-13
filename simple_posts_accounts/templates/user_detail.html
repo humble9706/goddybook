@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {{user.username|capfirst}}
+{% endblock title %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container-fluid">
+	<div class="row mt-1 text-center justify-content-center border border-dark p-1 m-md-3 align-items-center">
+
+		<div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 text-center">
+			  {% if user.profile.photo %}
+			    <img src="{{user.profile.photo.url}}" alt="{{user.username}}'s image" class="img-fluid">
+			  {% endif %}
+		</div>
+
+		<div class="col-12 col-sm-6 col-lg-4">
+			  <h4>{{ user.get_full_name|capfirst }}</h4>
+
+			  <h4>
+			  	Total Posts: {{user.posts.count}}
+			  </h4>
+
+			  <h4>
+			  	Occupation: {{user.profile.occupation|capfirst}}
+			  </h4>
+
+			   <h4>
+			  	Birth Day: {{user.profile.date_of_birth}}
+			  </h4>
+
+			   <h4>
+			  	Address: {{user.profile.address}}
+			  </h4>
+
+			   <h4>
+			  	Attends: {{user.profile.school}}
+			  </h4>
+
+			{% with total_followers=user.followers.count %}
+			   <button type="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+  					<span class="badge badge-light">{{ total_followers }}</span>
+  					follower{{ total_followers|pluralize }} 
+				</button>
+			{% endwith %}
+
+			    <a href="{% if request.user not in user.followers.all %}{% url 'Accounts:follow_user' user.id %}{% else %}{% url 'Accounts:unfollow_user' user.id %}{% endif %}" class="btn btn-info">
+			      {% if request.user not in user.followers.all %}
+			        Follow
+			      {% else %}
+			        Unfollow
+			      {% endif %}
+			    </a>
+
+			 {% with people_followed=user.following.count %}
+			    <button type="button" class="btn btn-primary" data-toggle="modal" type="button" data-target="#modal4followers">
+  					following <span class="badge badge-light">{{ people_followed }}</span> 
+				</button>
+			{% endwith %}
+		</div>
+	</div>
+	<div id="image-list" class="p-0">
+		{% include "post_list_ajax.html" with posts=user.posts.all %}
+	</div>
+ </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal4followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle"> Following </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for user in user.following.all %}
+        <div class="media">
+        	{% if user.profile.photo %}
+			  <img class="align-self-center mr-3 rounded-circle" src="{{user.profile.photo.url}}" width="40px" height="40px" alt="Generic placeholder image">
+			  {% else %}
+			  <img class="align-self-center mr-3 rounded-circle" src="{% static 'best-government.jpg' %}" width="40px" height="40px" alt="Generic placeholder image">
+			  {% endif %}
+			  <div class="media-body text-center">
+			    <h5 class="mt-0">{{user.username}}</h5>
+			    <p> Lorem ipsum dolor sit proident, sicia desit anim id est laborum. </p>
+			    <hr>
+			  </div>
+		</div>
+		{% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mx-auto" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle"> Followers </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	{% for user in user.followers.all %}
+		<div class="media">
+        	{% if user.profile.photo %}
+			  <img class="align-self-center mr-3 rounded-circle" src="{{user.profile.photo.url}}" width="40px" height="40px" alt="Generic placeholder image">
+			  {% else %}
+			  <img class="align-self-center mr-3 rounded-circle" src="{% static 'best-government.jpg' %}" width="40px" height="40px" alt="Generic placeholder image">
+			  {% endif %}
+			  <div class="media-body text-center">
+			    <h5 class="mt-0">{{user.username}}</h5>
+			    <p> Lorem ipsum dolor sit proident, sicia desit anim id est laborum. </p>
+			    <hr>
+			  </div>
+		</div>
+		{% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mx-auto" data-dismiss="modal">close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
