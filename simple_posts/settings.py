@@ -26,7 +26,7 @@ SECRET_KEY = 'f3s^9hxctx!%na01+ls^-d7=!q12=xiout1ms8$dr)cp&6v8@i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.43.213', '127.0.0.1', 'goddybook.heroku.com']
+ALLOWED_HOSTS = ['localhost', '192.168.43.213', '127.0.0.1', 'goddybook.herokuapp.com']
 
 
 # Application definition
