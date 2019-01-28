@@ -26,7 +26,7 @@ SECRET_KEY = 'f3s^9hxctx!%na01+ls^-d7=!q12=xiout1ms8$dr)cp&6v8@i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.43.213', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '192.168.43.213', '127.0.0.1', 'goddybook.heroku.com']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,6 +133,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -144,3 +147,5 @@ LOGOUT_URL = 'Accounts:logout'  # The url to redirect the user to log out.
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: reverse_lazy('Accounts:user_detail', args=[u.username])
 }
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
