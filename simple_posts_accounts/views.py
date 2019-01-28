@@ -14,7 +14,7 @@ from actions.models import Action
 
 @login_required
 def user_list(request):
-    users = User.objects.filter(is_active=True)
+    users = User.objects.filter(is_active=True).exclude(username=request.user.username)
     return render(request, 'user_list.html', {'section': 'people', 'users': users})
 
 @login_required

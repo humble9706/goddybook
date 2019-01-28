@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['localhost', '192.168.43.213', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'sorl.thumbnail',
+    #'sorl.thumbnail',
     'actions',
     'simple_posts_posts.apps.SimplePostsPostsConfig', #registering app names like this makes it possible to use appConfig for things like signals.
     'simple_posts_accounts',
@@ -144,7 +144,3 @@ LOGOUT_URL = 'Accounts:logout'  # The url to redirect the user to log out.
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: reverse_lazy('Accounts:user_detail', args=[u.username])
 }
-
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0

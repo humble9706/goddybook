@@ -11,5 +11,5 @@ urlpatterns = [
     path('post_detail/<int:year>/<int:month>/<int:day>/<slug:slug>/<int:id>/', views.post_detail, name='post_detail'),
     path('like_post/<int:post_id>/', views.like_post, name='like_post'),
     path('unlike_post/<int:post_id>/', views.unlike_post, name='unlike_post'),
-    path('ranking/', views.post_ranking, name='post_ranking'),
+    path('most_liked/', views.most_liked, name='most_liked'),
 ]

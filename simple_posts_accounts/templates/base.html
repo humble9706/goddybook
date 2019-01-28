@@ -40,11 +40,15 @@ var csrftoken = Cookies.get('csrftoken');
   });
 </script>
 
-$(document).ready(function(){
-    {% block java %}
-    console.log('ready');
-    {% endblock %}
-  });
+<script>
+$(function () {
+  width = $(window).width();
+  parseInt(width);
+  if (width > 768){
+  $('[data-toggle="tooltip"]').tooltip()
+};
+})
+</script>
 
 </body>
 </html>

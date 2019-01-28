@@ -1,4 +1,15 @@
-        {% load static %}
+{% extends "base.html" %}
+{% block title %} most liked posts {% endblock %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+  <div class="jumbotron jumbotron-fluid p-2 mb-0">
+  <div class="container">
+    <h1 class="text-center">Most Liked Posts</h1>
+    <p class="lead text-center">This is a list of posts with the most number of likes. It is determined by the number of likes that the post has.</p>
+  </div>
+</div>
         <div class="d-flex flex-row mb-3 flex-wrap flex-fill justify-content-center flex-wrap bg-black">
         {% for post in posts %}
         {% with post_likes=post.likes.all %}
@@ -32,3 +43,5 @@
         </div>
         {% endwith %}
         {% endfor %}
+
+{% endblock %}

@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     OCCUPATION_CHOICES = (
-        ('st', 'Student'),
-        ('bm', 'Business man'),
-        ('tr', 'Trader'),
-        ('em', 'Employee'),
-        ('tc', 'Technician'),
+        ('student', 'Student'),
+        ('business man', 'Business man'),
+        ('trader', 'Trader'),
+        ('employee', 'Employee'),
+        ('technician', 'Technician'),
     )
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
