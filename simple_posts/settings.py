@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'simple_posts.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DjangoSimplePosts',
-        'USER': 'postgres',
-        'PASSWORD': '9706',
-        'HOST': 'localhost',
+        'NAME': 'd9bdsbcd2i9akv',
+        'USER': 'qwauowmcznbbrn',
+        'PASSWORD': 'f9d55a7108c60b25fbad8aabf7d730303c8bb7381eaf559900de2be622e2d0d8',
+        'HOST': 'ec2-54-235-68-3.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -140,8 +140,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Tells django which url to redirect after a successful login if no 'next' parameter is present in the request.
+
 LOGIN_REDIRECT_URL = 'Accounts:dashboard'
+
 # The url to redirect the user to login (for views using @login_required).
+
 LOGIN_URL = 'Accounts:login'
 LOGOUT_URL = 'Accounts:logout'  # The url to redirect the user to log out.
 
